@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 body, html{
     margin-top: 5rem;
-    font-family: "Consolas" !important;
+    font-family: "Consolas", 'Roboto Mono' !important;
 }
 
 .text-center {
