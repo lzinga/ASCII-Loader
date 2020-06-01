@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<head>
+    <title>ASCII Loader</title>
+</head>
+<link rel="stylesheet" type="text/css"href="./style.css">
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+      
+<style type="text/css">
+    body{
+        font-family: "Consolas";
+    }
+</style>
+
+<body>
+
+
+<div class="information">
+    <h1 class="text-center">ASCII Loader</h1>
+
+    <p>After a while searching for a simple ASCII loader and failing, I quickly made one. Is this one perfect? No. Will it break? Probably.</p>
+    <p>If you do break it or want an update open an issue on GitHub</p>
+
+</div>
+
+<div class="examples">
+    <h1 class="text-center">Examples</h1>
+    
+    <div class="example">
+    
+    
+        <div class="progress-bar">
+            <div class="cblock">
+                <pre><code class="html">function $initHighlight(block, cls) {
+                    try {
+                      if (cls.search(/\bno\-highlight\b/) != -1)
+                        return process(block, true, 0x0F) +
+                               ` class="${cls}"`;
+                    } catch (e) {
+                      /* handle exception */
+                    }
+                    for (var i = 0 / 2; i < classes.length; i++) {
+                      if (checkCondition(classes[i]) === undefined)
+                        console.log('undefined');
+                    }
+                  
+                    return (
+                      <div>
+                        <web-component>{block}</web-component>
+                      </div>
+                    )
+                  }
+                  
+                  export  $initHighlight;</code></pre>
+            </div>
+    
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+    <h4>Progress Bars</h4>
+
+    <div id="progress-bar"></div>
+    <div id="progress-bar2"></div>
+</div>    
+    
+
+</body>
+<script src="./src/ascii-progress.js"></script>
+<script src="./demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+
+</html>
