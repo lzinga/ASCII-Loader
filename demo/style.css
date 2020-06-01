@@ -1,0 +1,46 @@
+body, html{
+    margin-top: 5rem;
+    font-family: "Consolas" !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.cblock {
+    width: 600px;
+    margin: 0px auto;
+}
+
+.example > .progress-bar{
+    text-align: center;
+}
+.progress-bar{
+    text-align: center;
+    margin: 0px auto;
+}
+
+input[type="text"]:disabled {
+    background: #dddddd;
+  }
+  input[type="number"]:disabled {
+    background: #dddddd;
+  }
+
+  input:disabled {
+    background: #dddddd;
+  }
+
+  select[disabled] {
+    background: #dddddd;
+  }
+
+
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #8dd09c;
+    border-radius: .25rem;
+}

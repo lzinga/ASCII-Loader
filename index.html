@@ -2,63 +2,153 @@
 <html>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
+
 <head>
     <title>ASCII Loader</title>
 </head>
-<link rel="stylesheet" type="text/css"href="./style.css">
-
-<link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
-      
-<style type="text/css">
-    body{
-        font-family: "Consolas";
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="./demo/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha256-2YQRJMXD7pIAPHiXr0s+vlRWA7GYJEK0ARns7k2sbHY=" crossorigin="anonymous" />
 
 <body>
 
 
-<div class="information">
-    <h1 class="text-center">ASCII Loader</h1>
+    <div class="container">
 
-    <p>After a while searching for a simple ASCII loader and failing, I quickly made one. Is this one perfect? No. Will it break? Probably.</p>
-    <p>If you do break it or want an update open an issue on GitHub</p>
+        <div class="row">
+            <div class="twelve columns"><h1 class="text-center">ASCII Loader</h1></div>
+        </div>
 
+        <div class="row">
+            <div class="four columns"> </div>
+            <div class="four columns">
+                <p class="text-center">After a while searching for a simple ASCII loader and failing, I quickly made one. Is
+                    this one perfect? No.
+                    Will it break? Probably. <a
+                    href="https://github.com/lzinga/ASCII-Loader">GitHub</a></a></p>
+                    <p class="text-center">Adjust the fields below and leave the input and it will update the loader. You can use <a href="https://www.asciitable.com/">ASCII Table</a> to find other loading characters. Such as █</p>
+            </div>
+            <div class="four columns"> </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <div class="progress-bar">
+                    <div id="progressbar"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<!-- The above form looks like this -->
+<form id="ascii-loader">
+    <div class="row">
+      <div class="three columns">
+        <label for="openCharacter">Open Character</label>
+        <input class="u-full-width" type="text" id="openCharacter" name="openCharacter" value="[" data-field="openCharacter" data-field="openCharacter">
+      </div>
+      <div class="three columns">
+        <label for="openCharacter">Loaded Character</label>
+        <input class="u-full-width" type="text" id="loadedCharacter" name="loadedCharacter" value="#" data-field="loadedCharacter">
+      </div>
+      <div class="three columns">
+        <label for="backgroundCharacter">Background Character</label>
+        <input class="u-full-width" type="text" id="backgroundCharacter" name="backgroundCharacter" value=" " data-field="backgroundCharacter">
+      </div>
+      <div class="three columns">
+        <label for="closeCharacter">Close Character</label>
+        <input class="u-full-width" type="text" id="closeCharacter" name="closeCharacter" value="]" data-field="closeCharacter">
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns">
+          <label for="length">Length</label>
+          <input class="u-full-width" type="number" id="length" name="length" value="60" data-field="length" data-convert-to="number">
+        </div>
+        <div class="four columns">
+          <label for="value">Value</label>
+          <input class="u-full-width" type="number" id="value" name="value" value="0" data-field="value" data-convert-to="number">
+        </div>
+        <div class="four columns">
+          <label for="completeAt">Completed At</label>
+          <input class="u-full-width" type="text" id="completeAt" name="completeAt" value="150" data-field="completeAt" data-convert-to="number">
+        </div>
+      </div>
+
+    <div class="row">
+        <div class="four columns">
+            <label for="showComment">Show Comment</label>
+            <select class="u-full-width" id="showComment" name="showComment" data-field="showComment" data-convert-to="boolean">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+        </div>
+        <div class="four columns">
+            <label for="commentLocation">Comment Location</label>
+            <select class="u-full-width" id="commentLocation" name="commentLocation"  data-field="commentLocation">
+              <option value="bottom">Bottom</option>
+              <option value="top">Top</option>
+            </select>
+        </div>
+
+        <div class="four columns">
+            <label for="startingComment">Starting Comment</label>
+            <input class="u-full-width" type="text" id="startingComment" name="startingComment" value="" data-field="startingComment">
+          </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns">
+            <label for="showPercent">Show Percent</label>
+            <select class="u-full-width" id="showPercent" name="showPercent" data-field="showPercent" data-convert-to="boolean">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+        </div>
+
+        <div class="four columns">
+            <label for="percentLocation">Percent Location</label>
+            <select class="u-full-width" id="percentLocation" name="percentLocation" data-field="percentLocation">
+              <option value="left">Left</option>
+              <option value="middle" selected="selected">Middle</option>
+              <option value="right">Right</option>
+            </select>
+        </div>
+
+        <div class="four columns">
+            <label for="percentDecimalPlaces">Percent Decimal Places</label>
+            <input class="u-full-width" id="percentDecimalPlaces" data-convert-to="number" data-field="percentDecimalPlaces" type="number" placeholder="" class="form-control input-md" data-delete-if="0" required="" value="2">
+          </div>
+    </div>
+
+    <div class="row" id="complete" style="display: none;">
+        <div class="twelve columns">
+            <div class="alert-success text-center">
+                The progress bar has reached 100%.
+              </div>
+        </div>
+    </div>
+<!--     <input class="button-primary u-full-width" type="submit" value="Update Progress Bar"> -->
+
+    <pre><code>
+var progressbar = new AsciiProgress("progressbar", <span id="code"></span>)
+    </code></pre>
+
+
+
+  </form>
+
+
+
+  <div class="row">
+    <div class="four columns"> </div>
+    <div class="four columns">
+        <p class="text-center">This page is still a work in progress. It is missing a few features and abilities.</p>
+    </div>
+    <div class="four columns"> </div>
 </div>
 
-<div class="examples">
-    <h1 class="text-center">Examples</h1>
-    
-    <div class="example">
-    
-    
-        <div class="progress-bar">
-            <div class="cblock">
-                <pre><code class="html">function $initHighlight(block, cls) {
-                    try {
-                      if (cls.search(/\bno\-highlight\b/) != -1)
-                        return process(block, true, 0x0F) +
-                               ` class="${cls}"`;
-                    } catch (e) {
-                      /* handle exception */
-                    }
-                    for (var i = 0 / 2; i < classes.length; i++) {
-                      if (checkCondition(classes[i]) === undefined)
-                        console.log('undefined');
-                    }
-                  
-                    return (
-                      <div>
-                        <web-component>{block}</web-component>
-                      </div>
-                    )
-                  }
-                  
-                  export  $initHighlight;</code></pre>
-            </div>
-    
-        </div>
 
 
 
@@ -68,21 +158,13 @@
 
 
 
-</div>
-
-
-
-
-    <h4>Progress Bars</h4>
-
-    <div id="progress-bar"></div>
-    <div id="progress-bar2"></div>
-</div>    
-    
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-serializer/1.2.0/jQuery-form-serializer.min.js" integrity="sha256-cz6ECCtCiS3QlmYN2Cg6b0wDQTpT/sM+/CQkIBl+2Bs=" crossorigin="anonymous"></script>
 <script src="./src/ascii-progress.js"></script>
-<script src="./demo.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+<script src="./demo/demo.js"></script>
+
 
 </html>

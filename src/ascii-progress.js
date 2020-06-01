@@ -15,12 +15,13 @@
             startingComment: " ",
             commentLocation: "bottom",
 
-            length: 100,
+            length: 60,
             value: 0,
+            completeAt: 150,
+
             showPercent: true,
             percentDecimalPlaces: 2,
             percentLocation: "middle",
-            completeAt: 150,
         }
 
         // Create options by extending defaults with the passed in arugments
@@ -30,8 +31,14 @@
             this.options = defaults
         }
 
+        if(this.options.onStart){
+            this.options.onStart()
+        }
+
         // Create global element references
         this.parent = document.getElementById(arguments[0])
+        this.parent.innerHTML = ""
+
         this.progressElement = this.parent.appendChild(document.createElement("div"))
         
         if(this.options.showComment){
@@ -70,7 +77,6 @@
         if(this.percent >= 100 && this.options.onComplete){
             this.options.onComplete()
         }
-
     }
 
     // Private Methods
@@ -91,20 +97,20 @@
         var amountPerBlock = this.options.completeAt / this.options.length
         var blocks = Math.ceil(this.value / amountPerBlock);
 
-        this.progressElement.innerHTML = ""
-        this.progressElement.innerHTML += this.options.openCharacter
+        this.progressElement.innerText = ""
+        this.progressElement.innerText += this.options.openCharacter
         for (var i = 0; i < blocks; i++) {
-            this.progressElement.innerHTML += this.options.loadedCharacter
+            this.progressElement.innerText += this.options.loadedCharacter
         }
         for (var i = 0; i < this.options.length - blocks; i++) {
-            this.progressElement.innerHTML += this.options.backgroundCharacter
+            this.progressElement.innerText += this.options.backgroundCharacter
         }
-        this.progressElement.innerHTML += this.options.closeCharacter
+        this.progressElement.innerText += this.options.closeCharacter
 
 
         if(this.options.showPercent){
-            var middle = this.progressElement.innerHTML.length / 2
-            this.progressElement.innerHTML = this.progressElement.innerHTML.slice(0, middle) + " " + this.percent.toFixed(this.options.percentDecimalPlaces).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + "% " + this.progressElement.innerHTML.slice(middle)
+            var middle = this.progressElement.innerText.length / 2
+            this.progressElement.innerText = this.progressElement.innerText.slice(0, middle) + " " + this.percent.toFixed(this.options.percentDecimalPlaces).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + "% " + this.progressElement.innerText.slice(middle)
         }
     }
 
