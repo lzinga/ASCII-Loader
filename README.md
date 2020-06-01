@@ -16,7 +16,7 @@ var progressbar = new AsciiProgress("progressbar", options)
 ```
 
 #### Default Options
-```json
+```javascript
 {
     openCharacter: "[",
     loadedCharacter: "#",
