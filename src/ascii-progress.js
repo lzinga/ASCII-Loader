@@ -17,7 +17,7 @@
 
             length: 60,
             value: 0,
-            completeAt: 150,
+            completeAt: 100,
 
             showPercent: true,
             percentDecimalPlaces: 2,
@@ -71,6 +71,10 @@
         }
         this.value = amount
         this.percent = (this.value / this.options.completeAt) * 100
+
+        if(this.options.onUpdate){
+            this.options.onUpdate(this.value, this.completeAt, this.percent)
+        }
 
         redraw.call(this, amount)
 
