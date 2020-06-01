@@ -98,20 +98,25 @@
         var blocks = Math.ceil(this.value / amountPerBlock);
 
         this.progressElement.innerText = ""
-        this.progressElement.innerText += this.options.openCharacter
-        for (var i = 0; i < blocks; i++) {
-            this.progressElement.innerText += this.options.loadedCharacter
-        }
-        for (var i = 0; i < this.options.length - blocks; i++) {
-            this.progressElement.innerText += this.options.backgroundCharacter
-        }
-        this.progressElement.innerText += this.options.closeCharacter
-
+        var str = ""
+        str += this.options.openCharacter
+        str += this.options.loadedCharacter.repeat(blocks)
+        str += this.options.backgroundCharacter.repeat(this.options.length - blocks)
+        str += this.options.closeCharacter
 
         if(this.options.showPercent){
-            var middle = this.progressElement.innerText.length / 2
-            this.progressElement.innerText = this.progressElement.innerText.slice(0, middle) + " " + this.percent.toFixed(this.options.percentDecimalPlaces).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + "% " + this.progressElement.innerText.slice(middle)
+            var middle = str.length / 2
+            var formattedPercent = 0;
+            if(this.options.percentDecimalPlaces <= 0){
+                formattedPercent = Math.ceil(this.percent)
+            } else {
+                formattedPercent = this.percent.toFixed(this.options.percentDecimalPlaces).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+            }
+            
+            str = str.slice(0, middle) + " " + formattedPercent + "% " + str.slice(middle)
         }
+
+        this.progressElement.innerText = str
     }
 
 
